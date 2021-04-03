@@ -11,10 +11,20 @@ function fetchNewsList() {
     return axios.get(`${config.baseUrl}news/1.json`);   // ` `으로 전체 url을 묶고 변수부분을 ${ } 로 처리하면 변수와 문자열 합칠수있다
 }
 
-fetchNewsList()
-    .then()
-    .catch()
+function fetchJobsList() {
+    return axios.get(`${config.baseUrl}jobs/1.json`);
+}
+
+function fetchAskList() {
+    return axios.get(`${config.baseUrl}ask/1.json`);
+}
+
+// fetchNewsList()
+//     .then()
+//     .catch()
 
 export {
-    fetchNewsList
+    fetchNewsList,
+    fetchJobsList,
+    fetchAskList,
 }
