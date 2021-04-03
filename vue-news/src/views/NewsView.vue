@@ -16,6 +16,7 @@ export default {
   },
   created() {
     var vm = this;
+    // getNewsList();  <<<< 함수 하나로 축약 가능 API 구조화
     axios.get('https://api.hnpwa.com/v0/news/1.json')   // promise 기반의 api 제공
       //.then(response => this.users = response.data)
       .then(function(response) {
