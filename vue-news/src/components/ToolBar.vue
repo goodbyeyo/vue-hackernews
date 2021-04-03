@@ -1,9 +1,7 @@
 <template>
-    <div>
+    <div class="header">
         <router-link to="/news">News</router-link>
-        &nbsp;&nbsp;
         <router-link to="/ask">Ask</router-link>
-        &nbsp;&nbsp;
         <router-link to="/jobs">Jobs</router-link>
     </div>
 </template>
@@ -15,5 +13,18 @@ export default {
 </script>
 
 <style>
+.header{
+    color : white;
+    background-color: #42b883;
+    display: flex;
+    padding: 8px 8px 8px 25px;
+    align-items: center;
+}
+.header .router-link-exact-active {
+    color : #35495e;
+}
+.header a{
+    color : white
+}
 
 </style>
