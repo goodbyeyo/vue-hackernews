@@ -13,7 +13,7 @@
     </script>
     <script>
         function callAjax() {
-            return new Promise(function(resolve, reject) {
+            return new Promise(function(resolve, reject) {  // 제이쿼리 Promise API 이미 존재 -> 보완 -> new Promise 객체
                 $.ajax({
                 url: 'https://api.hnpwa.com/v0/news/1.json',
                 success: function(data) {   // callback 함수...
