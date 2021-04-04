@@ -6,7 +6,10 @@
     
     <!-- 2. Essentail Recommented-->
     <tool-bar></tool-bar>   <!-- 컴포넌트 태그 연결 가능 -->
-    <router-view></router-view>
+    <transition name="fade"> <!-- 트랜지션 처리 -->
+      <router-view></router-view>
+    </transition>
+      
   </div>
 </template>
 
@@ -24,5 +27,12 @@ export default {
 body{ 
   padding : 0;
   margin : 0;
+}
+/* Router Transition */
+.fade-enter-active, .fade-leave-active {
+  transition: opacity .5s;
+}
+.fade-enter, .fade-leave-to /* .fade-leave-active below version 2.1.8 */ {
+  opacity: 0;
 }
 </style>
