@@ -20,13 +20,16 @@ function fetchAskList() {
 }
 
 function fetchUserInfo(username) {
-    console.log("name :: ", username);
     return axios.get(`${config.baseUrl}user/${username}.json`);
 }
 
+function fetchCommentItem(userId) {
+    return axios.get(`${config.baseUrl}item/${userId}.json`);
+}
 export {
     fetchNewsList,
     fetchJobsList,
     fetchAskList,
-    fetchUserInfo
+    fetchUserInfo,
+    fetchCommentItem
 }

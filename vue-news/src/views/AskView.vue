@@ -5,9 +5,12 @@
     <!-- <div v-for="item in fetchedAsk">{{ item.title }}</div> -->
     <p v-for="item in fetchedAsk">
         <!-- v-bind 속성 연결하면 href에 변수명이 대입된다 -->
-        <a :href="item.url"> <!-- <a v-bind:href="item.url"> 동일 -->
+        <!-- <a :href="item.url"> <a v-bind:href="item.url"> 동일 -->
+        <!-- <a :href="item.url">
           {{ item.title }} 
-        </a>
+        </a> -->
+        <!-- <router-link :to="item.url"> {{ item.title }} </router-link> -->
+        <router-link :to="`item/${item.id}`"> {{ item.title }} </router-link>
       <small>{{item.time_ago}} by {{ item.user }} </small>
     </p>
   </div>
@@ -39,7 +42,8 @@ export default {
   //   // }
   },
   created() { //  ES6 에서 축약가능한 문법 :::: 속성에 FUNCTION이 붙은경우 생략가능 creted:function() {}
-    this.$store.dispatch('FETCH_ASK');
+    // const ashId = item.id;
+    this.$store.dispatch('FETCH_ASK', );
     // fetchAskList()
     //   .then(response => {   // .then(function(response) {
     //     this.asks = response.data;

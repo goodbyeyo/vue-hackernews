@@ -4,6 +4,7 @@ import {
     fetchJobsList, 
     fetchAskList,
     fetchUserInfo,
+    fetchCommentItem,
 } from '../api/index.js';
 
 export default {
@@ -42,6 +43,16 @@ export default {
             .then(({ data }) => {
                 console.log(data);
                 commit('SET_USER', data);   // mutations 호출
+            })  
+            .catch((error) => {
+                console.log(error);
+            })
+    },
+    FETCH_ITEM({ commit }, id) {
+        fetchCommentItem(id)
+            .then(({ data }) => {
+                console.log(data);
+                commit('SET_ITEM', data);   // mutations 호출
             })  
             .catch((error) => {
                 console.log(error);
