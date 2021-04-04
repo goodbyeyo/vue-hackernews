@@ -2,7 +2,8 @@
 import {
     fetchNewsList, 
     fetchJobsList, 
-    fetchAskList 
+    fetchAskList,
+    fetchUserInfo,
 } from '../api/index.js';
 
 export default {
@@ -32,6 +33,16 @@ export default {
                 console.log(data);
                 commit('SET_ASKS', data);   // mutations 호출
             })
+            .catch((error) => {
+                console.log(error);
+            })
+    },
+    FETCH_USER({ commit }, name) {
+        fetchUserInfo(name)
+            .then(({ data }) => {
+                console.log(data);
+                commit('SET_USER', data);   // mutations 호출
+            })  
             .catch((error) => {
                 console.log(error);
             })
