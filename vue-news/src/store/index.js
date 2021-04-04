@@ -21,6 +21,9 @@ export const store = new Vuex.Store({
     getters: {  // computed와 같은 속성인데 store에 있는것
         fetchedAsk(state) {
             return state.asks;
+        },
+        fetchedItem(state) {
+            return state.item;
         }
     },
     mutations, //  축약가능(mutations:  mutations)
