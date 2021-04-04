@@ -1,26 +1,28 @@
 <template>
   <div>
-    <div v-for="item in asks">{{ item.title }}</div>
+    <!-- <div v-for="item in asks">{{ item.title }}</div> -->
+    <div v-for="item in this.$store.state.asks">{{ item.title }}</div>
   </div>
 </template>
 
 <script>
-import { fetchAskList } from '../api/index.js';
+// import { fetchAskList } from '../api/index.js';
 
 export default {
-  data() {
-    return {
-      asks: []
-    }
-  },
+  // data() {
+  //   return {
+  //     asks: []
+  //   }
+  // },
   created() { //  ES6 에서 축약가능한 문법 :::: 속성에 FUNCTION이 붙은경우 생략가능 creted:function() {}
-    fetchAskList()
-      .then(response => {   // .then(function(response) {
-        this.asks = response.data;
-      })
-      .catch((error) => {
-        console.log(error);
-      })
+    this.$store.dispatch('FETCH_ASK');
+    // fetchAskList()
+    //   .then(response => {   // .then(function(response) {
+    //     this.asks = response.data;
+    //   })
+    //   .catch((error) => {
+    //     console.log(error);
+    //   })
 
     // fetchAskList()
     //   .then()
