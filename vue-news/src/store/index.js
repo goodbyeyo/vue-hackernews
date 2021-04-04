@@ -13,6 +13,11 @@ export const store = new Vuex.Store({
         jobs: [],
         asks: [],
     },
+    getters: {  // computed와 같은 속성인데 store에 있는것
+        fetchedAsk(state) {
+            return state.asks;
+        }
+    },
     actions: {  // actions 는 API 호출을 위한 역할
         FETCH_NEWS(context) {
             fetchNewsList()
@@ -24,22 +29,22 @@ export const store = new Vuex.Store({
                     console.log(error);
             })
         },
-        FETCH_JOBS(context) {
+        FETCH_JOBS({ commit }) {
             fetchJobsList()
-                .then(({data}) => {
+                .then(({ data }) => {   
                     console.log(data);
                     console.log(context);
-                    context.commit('SET_JOBS', data);
+                    commit('SET_JOBS', data);   // mutations
                 })
                 .catch(error => {
                     console.log(error);
                 })
         },
-        FETCH_ASK(context) {
+        FETCH_ASK({ commit }) {
             fetchAskList()
-                .then(response => {   
-                    console.log(response.data);
-                    context.commit('SET_ASKS', response.data);
+                .then(({data}) => {   
+                    console.log(data);
+                    commit('SET_ASKS', data);   // mutations 호출
                 })
                 .catch((error) => {
                     console.log(error);

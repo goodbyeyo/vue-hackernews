@@ -1,19 +1,35 @@
 <template>
   <div>
     <!-- <div v-for="item in asks">{{ item.title }}</div> -->
-    <div v-for="item in this.$store.state.asks">{{ item.title }}</div>
+    <!-- <div v-for="item in this.$store.state.asks">{{ item.title }}</div> -->
+    <div v-for="item in fetchedAsk">{{ item.title }}</div>
   </div>
 </template>
 
 <script>
 // import { fetchAskList } from '../api/index.js';
-
+import { mapState, mapGetters } from 'vuex'
 export default {
-  // data() {
-  //   return {
-  //     asks: []
-  //   }
-  // },
+  computed: { // 계산된 속성으로 state에 접근
+    ...mapGetters([
+      'fetchedAsk'
+    ]), 
+  
+  // #3 ::: store에 선언한 getters속성의 함수를 가져온다
+  // ...mapGetters({    // spread operator
+  //   askItems : 'fetchedAsk',  // 변수 : 문자열(store의 getters의 함수명)
+  // })
+  
+  // #2
+  //   ...mapState({
+  //     fetchedasks : state => state.asks
+  //   })
+  
+  // #1
+  //   // ask() {
+  //   //   return this.$store.state.asks;
+  //   // }
+  },
   created() { //  ES6 에서 축약가능한 문법 :::: 속성에 FUNCTION이 붙은경우 생략가능 creted:function() {}
     this.$store.dispatch('FETCH_ASK');
     // fetchAskList()
