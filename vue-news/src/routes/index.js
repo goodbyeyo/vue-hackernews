@@ -10,7 +10,7 @@ Vue.use(VueRouter);
 
 export const router = new VueRouter({
     mode: 'history',    // url에  # 해쉬값 제거
-    routes: [
+    routes: [   // url 에 대한 라우팅 정보 명시
         {
             path: '/',
             component: NewsView, 

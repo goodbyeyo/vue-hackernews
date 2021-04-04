@@ -1,8 +1,10 @@
 import Vue from 'vue';
 import Vuex from 'vuex';
+// actions.js 로 옮긴다
 import {fetchNewsList, fetchJobsList, fetchAskList } from '../api/index.js';
 import mutations from './mutations.js'
 import actions from './actions.js'
+
 Vue.use(Vuex); // vuex는 플러그인 형태로 제공되기때문에 Vue.use로 사용 선언
 
 // Vuex 는 상태관리 도구
@@ -19,6 +21,19 @@ export const store = new Vuex.Store({
             return state.asks;
         }
     },
+    mutations, //  축약가능(mutations:  mutations)
+    // mutations: {    // state에 값을 저장하기 위한 역할
+    //     SET_NEWS(state, news) {  // SET_NEWS:function() ( , inheist object literal, 향샹된 객체정의법
+    //         state.news = news;
+    //     },
+    //     SET_JOBS(state, jobs) {
+    //         state.jobs = jobs;
+    //     },
+    //     SET_ASKS(state, asks) {
+    //         state.asks = asks;
+    //     }
+    // },
+    actions,  // 축약 가능(actions: actions)
     // actions: {  // actions 는 API 호출을 위한 역할
     //     FETCH_NEWS(context) {
     //         fetchNewsList()
@@ -34,7 +49,6 @@ export const store = new Vuex.Store({
     //         fetchJobsList()
     //             .then(({ data }) => {   
     //                 console.log(data);
-    //                 console.log(context);
     //                 commit('SET_JOBS', data);   // mutations
     //             })
     //             .catch(error => {
@@ -52,16 +66,4 @@ export const store = new Vuex.Store({
     //             })
     //     }
     // },
-    mutations: mutations,
-    // mutations: {    // state에 값을 저장하기 위한 역할
-    //     SET_NEWS(state, news) {  // SET_NEWS:function() ( , inheist object literal, 향샹된 객체정의법
-    //         state.news = news;
-    //     },
-    //     SET_JOBS(state, jobs) {
-    //         state.jobs = jobs;
-    //     },
-    //     SET_ASKS(state, asks) {
-    //         state.asks = asks;
-    //     }
-    // }
   })

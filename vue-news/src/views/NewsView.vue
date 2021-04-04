@@ -3,7 +3,12 @@
     ㅣ<!-- 설계시 유연하게 대응하기 위해서는 페이지 역할을 하는 컴포넌트는 데이터를 라우팅하는 정보만 담고 있도록 한다-->
     ㅣ<!-- 비지니스 로직은 들어가지 않도록 한다-->
     <!-- <div v-for="user in users">{{ user.title }}</div> -->
-    <div v-for="user in this.$store.state.news">{{ user.title }}</div>
+    <!-- <div v-for="user in this.$store.state.news">{{ user.title }}</div> -->
+    <p v-for="item in this.$store.state.news">
+      <!-- <a href="http://google.com"> {{ item.title }} </a> -->
+      <a v-bind:href="item.url"> {{ item.title }} </a>
+      <small>{{item.time_ago}} by {{ item.user }} </small>
+    </p> -->
   </div>
 </template>
 

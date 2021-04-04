@@ -1,3 +1,10 @@
+// 정의된 API 함수 
+import {
+    fetchNewsList, 
+    fetchJobsList, 
+    fetchAskList 
+} from '../api/index.js';
+
 export default {
     FETCH_NEWS(context) {
         fetchNewsList()
@@ -13,7 +20,6 @@ export default {
         fetchJobsList()
             .then(({ data }) => {   
                 console.log(data);
-                console.log(context);
                 commit('SET_JOBS', data);   // mutations
             })
             .catch(error => {
@@ -22,7 +28,7 @@ export default {
     },
     FETCH_ASK({ commit }) {
         fetchAskList()
-            .then(({data}) => {   
+            .then(({ data }) => {   
                 console.log(data);
                 commit('SET_ASKS', data);   // mutations 호출
             })

@@ -2,7 +2,14 @@
   <div>
     <!-- <div v-for="item in asks">{{ item.title }}</div> -->
     <!-- <div v-for="item in this.$store.state.asks">{{ item.title }}</div> -->
-    <div v-for="item in fetchedAsk">{{ item.title }}</div>
+    <!-- <div v-for="item in fetchedAsk">{{ item.title }}</div> -->
+    <p v-for="item in fetchedAsk">
+        <!-- v-bind 속성 연결하면 href에 변수명이 대입된다 -->
+        <a :href="item.url"> <!-- <a v-bind:href="item.url"> 동일 -->
+          {{ item.title }} 
+        </a>
+      <small>{{item.time_ago}} by {{ item.user }} </small>
+    </p>
   </div>
 </template>
 
@@ -11,13 +18,14 @@
 import { mapState, mapGetters } from 'vuex'
 export default {
   computed: { // 계산된 속성으로 state에 접근
-    ...mapGetters([
+  // #4
+    ...mapGetters([   // 배열표기법: 변수:문자열로 연결하지않아도 된다
       'fetchedAsk'
     ]), 
   
   // #3 ::: store에 선언한 getters속성의 함수를 가져온다
   // ...mapGetters({    // spread operator
-  //   askItems : 'fetchedAsk',  // 변수 : 문자열(store의 getters의 함수명)
+  //   askItems : 'fetchedAsk',  // 객채표기법 변수:문자열(getters의 함수명)
   // })
   
   // #2
