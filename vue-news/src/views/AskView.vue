@@ -1,18 +1,28 @@
 <template>
   <div>
-    <!-- <div v-for="item in asks">{{ item.title }}</div> -->
-    <!-- <div v-for="item in this.$store.state.asks">{{ item.title }}</div> -->
-    <!-- <div v-for="item in fetchedAsk">{{ item.title }}</div> -->
-    <p v-for="item in fetchedAsk">
-        <!-- v-bind 속성 연결하면 href에 변수명이 대입된다 -->
-        <!-- <a :href="item.url"> <a v-bind:href="item.url"> 동일 -->
-        <!-- <a :href="item.url">
-          {{ item.title }} 
-        </a> -->
-        <!-- <router-link :to="item.url"> {{ item.title }} </router-link> -->
-        <router-link :to="`item/${item.id}`"> {{ item.title }} </router-link>
-      <small>{{item.time_ago}} by {{ item.user }} </small>
-    </p>
+    <ul class="news-list">
+      <li v-for="item in fetchedAsk" class="post">
+        <!-- 포인트 영역 -->
+        <div class="points">
+          {{ item.points}}
+        </div> 
+        <!-- 기타 정보 영역 -->
+        <p class='news-title'>
+          <router-link :to="`item/${item.id}`">
+            {{ item.title }} 
+          </router-link>
+        </p>
+        <small class="link-text">
+           {{item.time_ago}} by 
+          <router-link v-bind:to="`/user/${item.user}`">{{ item.user }} </router-link>
+        </small>
+      </li>
+    </ul>
+    <!----------------------------------------------------------------------->
+    <!-- <p v-for="item in fetchedAsk">
+      <router-link :to="`item/${item.id}`"> {{ item.title }} </router-link>
+      <small> {{item.time_ago}} by {{ item.user }} </small>
+    </p> -->
   </div>
 </template>
 
@@ -68,6 +78,34 @@ export default {
 }
 </script>
 
-<style>
+<style scoped>
+.news-list {
+  margin: 0;
+  padding: 0;
+}
+
+.post {
+  list-style: none;
+  display: flex;
+  align-items: center;
+  border-bottom: 1px solid #eee;
+}
+
+.points {
+  width: 80px;
+  height: 60px;
+  display: flex;
+  align-items: center;  /* 수직 정렬 */
+  justify-content: center; /* 가로 정렬 */
+  color: #42b883;
+}
+
+.news-title {
+  margin: 0;
+}
+
+.link-text {
+  color: #828282
+}
 
 </style>

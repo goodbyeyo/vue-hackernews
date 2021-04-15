@@ -24,10 +24,24 @@ export default {
 </script>
 
 <style>
-body{ 
-  padding : 0;
-  margin : 0;
+body { 
+  padding: 0;
+  margin: 0;
 }
+
+a {
+  color: #34495e;
+  text-decoration: none;  /* 텍스트 밑줄 표시 : 해제 */
+}
+
+a:hover {  /* 특정 태그에 상태 변화가 일어났을때 css 효과를 추가할수 있다  */
+  color: #42b883;
+  text-decoration: underline;
+}
+a.router-link-exact-active {
+  text-decoration: underline;
+}
+
 /* Router Transition */
 .fade-enter-active, .fade-leave-active {
   transition: opacity .5s;

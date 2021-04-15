@@ -1,19 +1,23 @@
 <template>
   <div>
-    ㅣ<!-- 설계시 유연하게 대응하기 위해서는 페이지 역할을 하는 컴포넌트는 데이터를 라우팅하는 정보만 담고 있도록 한다-->
-    ㅣ<!-- 비지니스 로직은 들어가지 않도록 한다-->
-    <!-- <div v-for="user in users">{{ user.title }}</div> -->
-    <!-- <div v-for="user in this.$store.state.news">{{ user.title }}</div> -->
-    <p v-for="item in this.$store.state.news">
-      <a v-bind:href="item.url"> 
-        {{ item.title }} 
-        </a>
-      <small>
-        {{item.time_ago}} by 
-        <!-- <router-link v-bind:to="'/user/' + item.user">{{ item.user }} </router-link> -->
-        <router-link v-bind:to="`/user/${item.user}`">{{ item.user }} </router-link>
-      </small>
-    </p>
+    <ul class="news-list">
+      <li v-for="item in this.$store.state.news" class="post">
+        <!-- 포인트 영역 -->
+        <div class="points">
+          {{ item.points}}
+        </div> 
+        <!-- 기타 정보 영역 -->
+        <p class='news-title'>
+          <a v-bind:href="item.url">
+            {{ item.title }} 
+          </a>
+        </p>
+        <small class="link-text">
+           {item.time_ago}} by 
+          <router-link v-bind:to="`/user/${item.user}`">{{ item.user }} </router-link>
+        </small>
+      </li>
+    </ul>
   </div>
 </template>
 
@@ -59,6 +63,34 @@ export default {
 }
 </script>
 
-<style>
+<style scoped>
+.news-list {
+  margin: 0;
+  padding: 0;
+}
+
+.post {
+  list-style: none;
+  display: flex;
+  align-items: center;
+  border-bottom: 1px solid #eee;
+}
+
+.points {
+  width: 80px;
+  height: 60px;
+  display: flex;
+  align-items: center;  /* 수직 정렬 */
+  justify-content: center; /* 가로 정렬 */
+  color: #42b883;
+}
+
+.news-title {
+  margin: 0;
+}
+
+.link-text {
+  color: #828282
+}
 
 </style>
