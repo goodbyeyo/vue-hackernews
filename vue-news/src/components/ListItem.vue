@@ -8,15 +8,28 @@
           {{ item.points || 0 }}
         </div> 
         <!-- 기타 정보 영역 -->
-        <p class='news-title'>
-          <a v-bind:href="item.url">
-            {{ item.title }} 
-          </a>
-        </p>
-        <small class="link-text">
-           {item.time_ago}} by 
-          <router-link v-bind:to="`/user/${item.user}`">{{ item.user }} </router-link>
-        </small>
+        <div>
+          <!-- 타이틀 영역 -->
+          <p class='news-title'>
+            <template v-if="item.domain"> <!-- template를 이용한 분기처리 -->
+              <a v-bind:href="item.url"> <!--askView는 link url이 다름 -->
+                {{ item.title }} 
+              </a>
+            </template>
+            <template else>
+              <router-link :to="`item/${item.id}`">
+                {{ item.title }} 
+              </router-link>  
+            </template>
+          </p>
+          <small class="link-text">
+            {item.time_ago}} by
+            <router-link v-if="item.user" v-bind:to="`/user/${item.user}`">{{ item.user }} </router-link>
+            <a :href="item.url" v-else> 
+              {{ item.domain }} 
+            </a>
+          </small>
+        </div>
       </li>
     </ul>
   </div>
