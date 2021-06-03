@@ -1,10 +1,11 @@
 <template>
   <div>
      <ul class="news-list">
-      <li v-for="item in this.$store.state.news" class="post">
+      <!-- <li v-for="item in this.$store.state.news" class="post"> -->
+      <li v-for="item in listItems" class="post">
         <!-- 포인트 영역 -->
         <div class="points">
-          {{ item.points}}
+          {{ item.points || 0 }}
         </div> 
         <!-- 기타 정보 영역 -->
         <p class='news-title'>
@@ -23,13 +24,36 @@
 
 <script>
 export default { 
-    created() {
-    this.$store.dispatch('FETCH_NEWS'); 
-    },
+  created() {
+    // this.$store.dispatch('FETCH_NEWS'); 
+    // console.log(this.$route.path === '/news');
+    const name = this.$route.name;   
+
+    if (name === 'news') {
+      this.$store.dispatch('FETCH_NEWS');
+    } else if (name === 'ask') {
+      this.$store.dispatch('FETCH_ASK');
+    } else if (name === 'jobs') {
+      this.$store.dispatch('FETCH_JOBS');
+    }
+    // this.$store.dispatch(actionName)
+  },
+  computed: {
+    listItems(){    // v-for list의 대상이 되는 아이템
+      const name = this.$route.name;
+      if (name === 'news') {
+        return this.$store.state.news;
+    } else if (name === 'ask') {
+        return this.$store.state.ask;
+    } else if (name === 'jobs') {
+        return this.$store.state.jobs;
+    }  
+    }
+  }
 }
 </script>
 
-<style scoped>  
+<style scoped>
 .news-list {
   margin: 0;
   padding: 0;

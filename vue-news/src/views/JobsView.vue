@@ -1,12 +1,12 @@
 <template>
   <div>
-    <ul class="news-list">
+    <list-item></list-item>
+    <!-- 
+      <ul class="news-list">
       <li v-for="job in this.$store.state.jobs" class="post">
-        <!-- 포인트 영역 -->
         <div class="points">
           11
         </div> 
-        <!-- 기타 정보 영역 -->
         <p class='news-title'>
           <a :href="job.url"> 
            {{ job.title }} 
@@ -17,12 +17,10 @@
           <a :href="job.url">
              {{ job.domain }}
           </a>
-          <!-- <router-link v-bind:to="`/user/${item.user}`">
-            {{ item.domain }} 
-          </router-link> -->
         </small>
       </li>
-    </ul>
+    </ul> 
+    -->
       <!-- <div v-for="job in jobs"> {{ job.title }} </div> -->
       <!-- <div v-for="job in this.$store.state.jobs">{{ job.title }}</div> -->
     <!-- <p v-for="item in this.$store.state.jobs">
@@ -35,8 +33,10 @@
 </template>
 
 <script>
+import ListItem from '../components/ListItem.vue';
 // import {fetchJobsList} from '../api/index.js';
 export default {
+  components: { ListItem },
   created() {
     this.$store.dispatch('FETCH_JOBS');
     // fetchJobsList()

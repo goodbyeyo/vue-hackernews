@@ -5,8 +5,8 @@ export default {
     SET_JOBS(state, jobs) {
         state.jobs = jobs;
     },
-    SET_ASKS(state, asks) {
-        state.asks = asks;
+    SET_ASKS(state, ask) {
+        state.ask = ask;
     },
     SET_USER(state, user) {
         state.user = user;
