@@ -8,7 +8,7 @@ import actions from './actions.js'
 Vue.use(Vuex); // vuex는 플러그인 형태로 제공되기때문에 Vue.use로 사용 선언
 
 // Vuex 는 상태관리 도구
-// 상태는 여러콤포넌트간의 공유되는 데이터 속성
+// 상태는 여러콤포넌트간의 공유되는 데이터 속성cd
 // instance에 해당하므로 main.js 로 내보내야.. export
 export const store = new Vuex.Store({    
     state: {
@@ -16,7 +16,7 @@ export const store = new Vuex.Store({
         jobs: [],
         asks: [],
         user: {},
-        item: {},
+        item: {},   // itemView에 객체를 전달해야함 =>fetchedItem , [] 배열을 전달할경우 에러 발생
     },
     getters: {  // computed와 같은 속성인데 store에 있는것
         fetchedAsk(state) {

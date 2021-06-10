@@ -4,11 +4,16 @@
                 <i class="fas fa-user"></i>
             </div>
             <div class="user-description">
-               <div>
-                   {{ info.id }}
-                </div>
+                <slot name="username">
+                    <!--상위컴포넌트에서 정의할 영역 -->    
+                </slot>
                 <div class="time">
-                    {{ info.created }}
+                    <slot name="time">
+                        <!--상위컴포넌트에서 정의할 영역 -->    
+                    </slot>
+                    <slot name="karma">
+                        <!--상위컴포넌트에서 정의할 영역 -->    
+                    </slot>
                 </div>
             </div>
     </div>
@@ -19,6 +24,16 @@ export default {
     props: {
         info: Object
     },
+    // 1. UserView => action 호출
+    // 2. action -> api 호출
+    // 3. actions -> mutations -> state 호출
+    // 4. state -> userProfile computed로 data 전달
+    
+    // 표현하는 부분에서 vuex에서 데이터를 가져오도록 하는게 적합하다
+
+    // components tag 에서 명시적으로 데이터 전달
+    // => 이점 : 
+
     // props로 내려온 info를 전달하기때문에 computed 속성은 필요없음
     // computed: {
     //     userInfo(){

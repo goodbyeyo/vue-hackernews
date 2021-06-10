@@ -1,6 +1,10 @@
 <template>
   <div>
-      <user-profile :info="userInfo"></user-profile>  <!-- computed 속성으로 내려받음-->
+      <user-profile :info="userInfo">  <!-- computed 속성으로 내려받음-->
+        <div slot="username">{{ userInfo.id }}</div>
+        <template slot="time">{{ 'Joined ' + userInfo.created }}</template>
+        <div slot="karma">{{ userInfo.karma }}</div>
+      </user-profile>
       <!-- 
       <p> name : {{ this.$store.state.user.id}} </p>
       <p> karma : {{ this.$store.state.user.karma}} </p>
@@ -12,13 +16,12 @@
 <script>
 import UserProfile from '../components/UserProfile.vue';
 
-
 export default {
   components: {
     UserProfile,
   },
   computed: {
-    userInfo(){
+    userInfo(){ 
       return this.$store.state.user;
     }
   },
