@@ -11,8 +11,11 @@ export default {
     FETCH_NEWS(context) {
         fetchNewsList()
             .then(response => {
-                console.log(response.data);
-                context.commit('SET_NEWS', response.data);
+                // 데이터를 꺼내와서 담은 다음 mutation에 담아주고 응답데이터를 화면으로 리턴
+                context.commit('SET_NEWS', response.data);  
+                // promise 객체를 반환
+                // $store.dispatch 이후에 .then(), .catch() 메서드체이닝 가능
+                return response;
             })
             .catch(error => {
                 console.log(error);

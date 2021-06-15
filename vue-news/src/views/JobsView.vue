@@ -34,17 +34,32 @@
 
 <script>
 import ListItem from '../components/ListItem.vue';
+import bus from '../utils/bus.js';
 // import {fetchJobsList} from '../api/index.js';
 export default {
   components: { ListItem },
   created() {
-    this.$store.dispatch('FETCH_JOBS');
+    bus.$emit('start:spinner');   // 데이터를 호출하기전에 spinner을 띄워놓고
+    setTimeout(() => {
+      this.$store.dispatch('FETCH_JOBS') // 데이터를 호출하는것을(담아오는것) 의미함
+      .then(() => {
+        console.log('fetched')
+        bus.$emit('end:spinner');  // 데이터를 담아오고 나서 3초후 spinner을 종료 
+      })
+      .catch((error) => {
+        console.log(error);
+      });
+    }, 3000);
+  }
+}
+  // created() {
+  //   this.$store.dispatch('FETCH_JOBS');
     // fetchJobsList()
     //   .then( response => this.jobs = response.data )
     //   .catch( error => console.log(error) );
-  }
+  // }
 
-}
+// }
 </script>
 
 <style scoped>

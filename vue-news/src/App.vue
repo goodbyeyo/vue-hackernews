@@ -26,7 +26,7 @@ export default {
   },
   data() {
     return {
-      loadingStatus : true,
+      loadingStatus : false,
     };
   },
   methods: {

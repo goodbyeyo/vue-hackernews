@@ -14,9 +14,17 @@ export default {
     ListItem,
   },
   created() {
-    bus.$emit('start:spinner');
-    this.$store.dispatch('FETCH_NEWS');
-    bus.$emit('end:spinner');
+    bus.$emit('start:spinner');   // 데이터를 호출하기전에 spinner을 띄워놓고
+    setTimeout(() => {
+      this.$store.dispatch('FETCH_NEWS') // 데이터를 호출하는것을(담아오는것) 의미함
+      .then(() => {
+        console.log('fetched')
+        bus.$emit('end:spinner');  // 데이터를 담아오고 나서 3초후 spinner을 종료 
+      })
+      .catch((error) => {
+        console.log(error);
+      });
+    }, 3000);
   }
 }
   // data() {
