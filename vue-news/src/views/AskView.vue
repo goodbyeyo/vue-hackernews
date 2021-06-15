@@ -35,9 +35,9 @@ export default {
   components: {
     ListItem,
   },
-  // created() {
-  //   this.$store.dispatch('FETCH_ASK');
-  // }
+  created() {
+    this.$store.dispatch('FETCH_ASK');
+  }
 }
 
 </script>

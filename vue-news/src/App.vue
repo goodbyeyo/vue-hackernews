@@ -9,17 +9,45 @@
     <transition name="fade"> <!-- 트랜지션 처리 -->
       <router-view></router-view>
     </transition>
+    <spinner :loading="loadingStatus"></spinner> <!-- 스피너 등록 -->
       
   </div>
 </template>
 
 <script>
 import ToolBar from './components/ToolBar.vue';
+import Spinner from './components/Spinner.vue';
+import bus from './utils/bus.js';
 
 export default {
   components: {
     ToolBar,
+    Spinner,
   },
+  data() {
+    return {
+      loadingStatus : true,
+    };
+  },
+  methods: {
+    startSpinner() {
+      this.loadingStatus = true;
+    },
+    endSpinner() {
+      this.loadingStatus = false;
+    }
+  },
+  created() {
+    bus.$on('start:spinner', this.startSpinner);
+    // bus.$on('start:spinner', () => this.loadingStatus = true);
+    bus.$on('end:spinner', this.endSpinner);
+  },
+  beforeDestroy() {
+    // 페이지에서 앱을 종료하기전 or 컴포넌트 역할이 끝나고나서 이벤트를 종료해야함
+    // off 해줘야 이벤트 객체가 쌓이지 않고 계속 해제가 가능하다...
+    bus.$off('start:spinner', this.startSpinner); 
+    bus.$off('end:spinner', this.endSpinner);
+  }
 }
 </script>
 
