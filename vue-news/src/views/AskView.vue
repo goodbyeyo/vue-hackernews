@@ -31,24 +31,28 @@
 // import { fetchAskList } from '../api/index.js';
 import ListItem from '../components/ListItem.vue';
 import bus from '../utils/bus.js';
+import ListMixin from '../mixins/ListMixin.js'
 // import { mapState, mapGetters } from 'vuex'
+
 export default {
   components: {
     ListItem,
   },
-  created() {
-    bus.$emit('start:spinner');   // 데이터를 호출하기전에 spinner을 띄워놓고
-    setTimeout(() => {
-      this.$store.dispatch('FETCH_ASK') // 데이터를 호출하는것을(담아오는것) 의미함
-      .then(() => {
-        console.log('fetched')
-        bus.$emit('end:spinner');  // 데이터를 담아오고 나서 3초후 spinner을 종료 
-      })
-      .catch((error) => {
-        console.log(error);
-      });
-    }, 3000);
-  }
+  mixins: [ListMixin],
+  // mixin 으로 created()가 불필요함
+  // created() {
+  //   bus.$emit('start:spinner');   // 데이터를 호출하기전에 spinner을 띄워놓고
+  //   setTimeout(() => {
+  //     this.$store.dispatch('FETCH_ASK') // 데이터를 호출하는것을(담아오는것) 의미함
+  //     .then(() => {
+  //       console.log('fetched')
+  //       bus.$emit('end:spinner');  // 데이터를 담아오고 나서 3초후 spinner을 종료 
+  //     })
+  //     .catch((error) => {
+  //       console.log(error);
+  //     });
+  //   }, 3000);
+  // }
   // created() {
   //   this.$store.dispatch('FETCH_ASK');
   // }
