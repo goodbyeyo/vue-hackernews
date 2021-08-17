@@ -1,8 +1,9 @@
 import Vue from 'vue';
 import VueRouter from 'vue-router';
-import NewsView from '../views/NewsView.vue';
-import AskView from '../views/AskView.vue';
-import JobsView from '../views/JobsView.vue';
+// high order component 구현으로 CreateListView.js 와 ListView.vue만 필요함, 나머진 불필요
+// import NewsView from '../views/NewsView.vue';
+// import AskView from '../views/AskView.vue';
+// import JobsView from '../views/JobsView.vue';
 import UserView from '../views/UserView.vue';
 import ItemView from '../views/ItemView.vue';
 import createListView from '../views/CreateListView.js';
@@ -14,7 +15,8 @@ export const router = new VueRouter({
     routes: [   // url 에 대한 라우팅 정보 명시
         {
             path: '/',
-            component: NewsView, 
+            redirect: '/news',
+            // component: NewsView, 
         },
         {
             // path: url 주소

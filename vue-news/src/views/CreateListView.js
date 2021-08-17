@@ -3,8 +3,9 @@ import bus from '../utils/bus.js';
 
 export default function createListView(name) {
      return {
-         // 재사용할 인스턴스(컴포넌트) 옵션들이 들어갈 자리
-         name: name,
+        // 재사용할 인스턴스(컴포넌트) 옵션들이 들어갈 자리
+        name: name,
+        //  name: 'high order component',
          created() {
             bus.$emit('start:spinner');   // 데이터를 호출하기전에 spinner을 띄워놓고
             setTimeout(() => {
