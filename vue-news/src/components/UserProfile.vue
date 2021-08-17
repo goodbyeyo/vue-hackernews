@@ -16,6 +16,24 @@
                     </slot>
                 </div>
             </div>
+
+            <!--
+                ItemView => info.user
+                UserView => info.id
+            -->
+             
+            <!-- 
+            <div class="user-description">
+                <div></div>    
+                    <router-link :to="`/user/${userInfo.user}`">
+                        {{userInfo.id}}
+                    </router-link?
+                <div class="time">
+                    {{info.created}}
+                </div>
+            </div> 
+            -->
+
     </div>
 </template>
 
@@ -23,11 +41,13 @@
 export default {
     props: {
         info: Object
-    },
+    }
+    
     // 1. UserView => action 호출
     // 2. action -> api 호출
     // 3. actions -> mutations -> state 호출
-    // 4. state -> userProfile computed로 data 전달
+    // 4. state -> userProfile 에서 computed로 data 접근
+    // 5. UserView 에서 props 로 UserProfile 에게 데이터 전달 
     
     // 표현하는 부분에서 vuex에서 데이터를 가져오도록 하는게 적합하다
 

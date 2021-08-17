@@ -5,6 +5,7 @@ import {
     fetchAskList,
     fetchUserInfo,
     fetchCommentItem,
+    fetchList
 } from '../api/index.js';
 
 export default {
@@ -57,6 +58,16 @@ export default {
                 console.log(data);
                 commit('SET_ITEM', data);   // mutations 호출
             })  
+            .catch((error) => {
+                console.log(error);
+            })
+    },
+    FETCH_LIST({ commit }, pageName) {
+        fetchList(pageName)
+            .then(({ data }) => {
+                console.log(data);
+                commit('SET_LIST', data);   // mutations 호출
+            })
             .catch((error) => {
                 console.log(error);
             })

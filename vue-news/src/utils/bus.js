@@ -2,11 +2,12 @@
 import Vue from 'vue';
 export default new Vue();
 
+// export default 와 아닌것의 차이점 
+
 // bus.js
 // export const bun = new Vue();
 // App.vue
 // import { bus } from "./bus.js";
-
 
 
 // bus.js

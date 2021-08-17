@@ -1,5 +1,6 @@
 <template>
   <div>
+      <!-- props 로 데이터 전달할때 --> 
       <user-profile :info="userInfo">  <!-- computed 속성으로 내려받음-->
         <div slot="username">{{ userInfo.id }}</div>
         <template slot="time">{{ 'Joined ' + userInfo.created }}</template>

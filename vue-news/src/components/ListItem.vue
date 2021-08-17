@@ -53,14 +53,17 @@ export default {
   },
   computed: {
     listItems(){    // v-for list의 대상이 되는 아이템
-      const name = this.$route.name;
-      if (name === 'news') {
-        return this.$store.state.news;
-    } else if (name === 'ask') {
-        return this.$store.state.ask;
-    } else if (name === 'jobs') {
-        return this.$store.state.jobs;
-    }  
+      return this.$store.state.list;
+
+      // CreateListView.js 에서 index.js에서 넘기는 viewName을 전달하므로 분기처리할 필요가 없다
+      // const name = this.$route.name;
+      // if (name === 'news') {
+      //   return this.$store.state.news;
+      // } else if (name === 'ask') {
+      //     return this.$store.state.ask;
+      // } else if (name === 'jobs') {
+      //     return this.$store.state.jobs;
+      // }  
     }
   }
 }

@@ -17,6 +17,7 @@ export const store = new Vuex.Store({
         asks: [],
         user: {},
         item: {},   // itemView에 객체를 전달해야함 =>fetchedItem , [] 배열을 전달할경우 에러 발생
+        list: [],   // news, jobs, asks
     },
     getters: {  // computed와 같은 속성인데 store에 있는것
         fetchedAsk(state) {
