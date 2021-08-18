@@ -63,11 +63,22 @@ export default {
                 console.log(error);
             })
     },
+    // #2
     FETCH_LIST({ commit }, pageName) {
+        console.log(2);
+        // #3
         return fetchList(pageName)
-            .then(({ data }) => {
-                console.log(data);
-                commit('SET_LIST', data);   // mutations 호출
+            .then(response => { 
+            // 아래의 방법은 비동기 처리의 순서가 보장되지 않는다
+            // .then(({ data }) => {
+            // console.log(data);
+                console.log(4);
+                // #4
+                commit('SET_LIST', response.data);
+                return response;
+                // 아래의 방법은 비동기 처리의 순서가 보장되지 않는다
+                // commit('SET_LIST', data);   // mutations 호출
+             
             })
             .catch((error) => {
                 console.log(error);

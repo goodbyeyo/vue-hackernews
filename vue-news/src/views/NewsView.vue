@@ -15,6 +15,7 @@ export default {
     ListItem,
   },
   mixins: [ListMixin],
+  // * navigation guard > beforeEnter() 적용으로 mixin 제거 *
   // mixin 으로 created()가 불필요함
   // created() {
   //   bus.$emit('start:spinner');   // 데이터를 호출하기전에 spinner을 띄워놓고

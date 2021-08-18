@@ -17,7 +17,7 @@ export default function createListView(name) {
               .catch((error) => {
                 console.log(error);
               });
-            }, 2000);
+            }, 3000);
          },
          render(createElement) {    // 내부적으로 compile 변환할때 render 함수 사용
              return createElement(ListView);

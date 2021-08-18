@@ -39,6 +39,12 @@ export default {
     ListItem,
   },
   mixins: [ListMixin],
+  // mounted 될때 spinner 종료하도록 처리 
+  // mounted() {
+  //   bus.$emit('end:spinner');  // 데이터를 담아오고 나서 3초후 spinner을 종료 
+  // }
+  // * navigation guard > beforeEnter() 적용으로 mixin 제거 *
+  // mixins: [ListMixin],
   // mixin 으로 created()가 불필요함
   // created() {
   //   bus.$emit('start:spinner');   // 데이터를 호출하기전에 spinner을 띄워놓고
