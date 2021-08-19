@@ -1,7 +1,12 @@
 <template>
   <div>
       <h1>Chart.js</h1>
-    <canvas id="myChart" width="400" height="400"></canvas> 
+    <!-- 
+    <canvas id="barChart" width="400" height="400"></canvas>
+    <canvas id="lineChart" width="400" height="400"></canvas> 
+    -->
+    <canvas ref="barChart" id="barChart" width="400" height="400"></canvas>
+    <canvas ref="lineChart" id="lineChart" width="400" height="400"></canvas>
   </div>
 </template>
 
@@ -11,8 +16,10 @@ export default {
     // 컴포넌트 속성 && 인스턴스 옵션이 들어가는 공간
     // 쿼리 접근자를  사용하는경우 mounted()
     mounted() {
-        var ctx = document.getElementById('myChart');
-        var myChart = new Chart(ctx, {
+        // var ctx = document.getElementById('barChart');
+        // var ctx = this.$refs.barChart
+        // var barChart = new Chart(ctx, {
+        var barChart = new Chart(this.$refs.barChart, {    
             type: 'bar',
             data: {
                 labels: ['Red', 'Blue', 'Yellow', 'Green', 'Purple', 'Orange'],
@@ -46,6 +53,28 @@ export default {
                 }
             }
         });
+        // var ctx2 = document.getElementById('lineChart');
+        // var ctx2 = this.$refs.lineChart.getContext('2d');
+        // var lineChart = new Chart(ctx2, {
+        var lineChart = new Chart(this.$refs.lineChart.getContext('2d'), {    
+            type: 'line',
+            data: {
+                labels :[
+                    'January',
+                    'February',
+                    'March',
+                    'April',
+                    'May',
+                    'June',
+                ],
+                datasets: [{
+                label: 'My First dataset',
+                backgroundColor: 'rgb(255, 99, 132)',
+                borderColor: 'rgb(255, 99, 132)',
+                data: [0, 10, 5, 2, 20, 30, 45],
+                }]
+            }
+         });
     }
 }
 </script>
