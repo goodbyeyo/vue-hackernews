@@ -10,6 +10,9 @@
       <router-view></router-view>
     </transition>
     <spinner :loading="loadingStatus"></spinner> <!-- 스피너 등록 -->
+    
+    <chart-view v-on:refreshChart="refreshChart" v-bind:propsdata="chartDataSet"></chart-view>
+    
       
   </div>
 </template>
@@ -18,15 +21,38 @@
 import ToolBar from './components/ToolBar.vue';
 import Spinner from './components/Spinner.vue';
 import bus from './utils/bus.js';
+import ChartView from './views/ChartView.vue';
 
 export default {
   components: {
     ToolBar,
     Spinner,
+    ChartView,
   },
   data() {
     return {
       loadingStatus : false,
+      chartDataSet: [{
+          label: '# of Votes',
+          data: [12, 19, 3, 5, 2, 3],
+          backgroundColor: [
+              'rgba(255, 99, 132, 0.2)',
+              'rgba(54, 162, 235, 0.2)',
+              'rgba(255, 206, 86, 0.2)',
+              'rgba(75, 192, 192, 0.2)',
+              'rgba(153, 102, 255, 0.2)',
+              'rgba(255, 159, 64, 0.2)'
+          ],
+          borderColor: [
+              'rgba(255, 99, 132, 1)',
+              'rgba(54, 162, 235, 1)',
+              'rgba(255, 206, 86, 1)',
+              'rgba(75, 192, 192, 1)',
+              'rgba(153, 102, 255, 1)',
+              'rgba(255, 159, 64, 1)'
+          ],
+          borderWidth: 1
+      }],
     };
   },
   methods: {
@@ -35,12 +61,19 @@ export default {
     },
     endSpinner() {
       this.loadingStatus = false;
+    },
+    refreshChart() {
+      this.chartDataSet = [10,20];
     }
   },
   created() {
     bus.$on('start:spinner', this.startSpinner);
     // bus.$on('start:spinner', () => this.loadingStatus = true);
     bus.$on('end:spinner', this.endSpinner);
+    
+    // 차트데이터 api 호출
+
+
   },
   beforeDestroy() {
     // 페이지에서 앱을 종료하기전 or 컴포넌트 역할이 끝나고나서 이벤트를 종료해야함
