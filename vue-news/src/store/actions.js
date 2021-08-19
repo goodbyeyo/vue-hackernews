@@ -46,9 +46,7 @@ export default {
     },
     // #2
     async FETCH_LIST({ commit }, pageName) {
-        console.log('fetch_list');
         const response = await fetchList(pageName);
-        console.log(4);
         // #4
         commit('SET_LIST', response.data);
         return response;

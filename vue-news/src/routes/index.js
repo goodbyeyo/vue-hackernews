@@ -11,6 +11,8 @@ import createListView from '../views/CreateListView.js';
 import bus from '../utils/bus.js';
 import { store } from '../store/index.js';
 import LoginView from '../views/LoginView.vue';
+import ChartView from '../views/ChartView.vue';
+
 
 Vue.use(VueRouter);
 
@@ -111,6 +113,10 @@ export const router = new VueRouter({
         {
             path: '/login',
             component: LoginView
+        },
+        {
+            path: '/chart',
+            component: ChartView
         },
     ]
 })
