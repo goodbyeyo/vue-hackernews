@@ -11,6 +11,7 @@
 
 <script>
 import axios from 'axios';
+import { handleException } from '../utils/handler.js';
 
 export default {
     data() {
@@ -34,11 +35,17 @@ export default {
                 .catch(error => console.log(error));
         },
         async loginUserAsync() {
-            var response  = await axios.get('https://jsonplaceholder.typicode.com/users/1');
-            if(response.data.id === 1) {
-                console.log('사용자가 인증되었습니다');
-                var list = await axios.get('https://jsonplaceholder.typicode.com/todos')
-                this.items = list.data;
+            try{
+                var response  = await axios.get('https://jsonplaceholder.typicode.com/users/1');
+                if(response.data.id === 1) {
+                    console.log('사용자가 인증되었습니다');
+                    var list = await axios.get('https://jsonplaceholder.typicode.com/todos')
+                    this.items = list.data;
+                }
+            }catch(error) {
+                // error 처리를 위한 공통함수 구현
+                handleException(error);
+                console.log(error);
             }
         }
     }
