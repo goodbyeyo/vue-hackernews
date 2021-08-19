@@ -15,13 +15,31 @@ function fetchJobsList() {
     return axios.get(`${config.baseUrl}jobs/1.json`);
 }
 
-function fetchAskList() {
-    return axios.get(`${config.baseUrl}ask/1.json`);
-}
+// function fetchAskList() {
+//     return axios.get(`${config.baseUrl}ask/1.json`);
+// }
 
+async function fetchAskList() {
+    try {
+        const response = await axios.get(`${config.baseUrl}ask/1.json`);
+        return response;
+        // return await axios.get(`${config.baseUrl}ask/1.json`);
+    } catch(error) {
+        console.log(error);
+    }
+}
 // News, Jobs, Ask를 포함하는 API 호출 함수 구현
-function fetchList(pageName) {
-    return axios.get(`${config.baseUrl}${pageName}/1.json`);
+// function fetchList(pageName) {
+//     return axios.get(`${config.baseUrl}${pageName}/1.json`);
+// }
+async function fetchList(pageName) {
+    try {
+        const response = await axios.get(`${config.baseUrl}${pageName}/1.json`);
+        return response;
+        // return await axios.get(`${config.baseUrl}${pageName}/1.json`);
+    } catch(error) {
+        console.log(error);
+    }
 }
 
 function fetchUserInfo(username) {
