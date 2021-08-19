@@ -11,7 +11,7 @@
 </template>
 
 <script>
-import Chart from 'chart.js'
+// import Chart from 'chart.js'
 export default {
     // 컴포넌트 속성 && 인스턴스 옵션이 들어가는 공간
     // 쿼리 접근자를  사용하는경우 mounted()
@@ -19,7 +19,10 @@ export default {
         // var ctx = document.getElementById('barChart');
         // var ctx = this.$refs.barChart
         // var barChart = new Chart(ctx, {
-        var barChart = new Chart(this.$refs.barChart, {    
+        // var barChart = new Chart(this.$refs.barChart, {
+    
+        // Chart plugin lib 전역접근 => this.$_Chart
+        var barChart = new this.$_Chart(this.$refs.barChart, {        
             type: 'bar',
             data: {
                 labels: ['Red', 'Blue', 'Yellow', 'Green', 'Purple', 'Orange'],
@@ -56,17 +59,15 @@ export default {
         // var ctx2 = document.getElementById('lineChart');
         // var ctx2 = this.$refs.lineChart.getContext('2d');
         // var lineChart = new Chart(ctx2, {
-        var lineChart = new Chart(this.$refs.lineChart.getContext('2d'), {    
+        // var lineChart = new Chart(this.$refs.lineChart.getContext('2d'), { 
+        
+        // Chart plugin lib 전역접근 => this.$_Chart
+        var lineChart = new this.$_Chart(this.$refs.lineChart.getContext('2d'), {    
+           
+
             type: 'line',
             data: {
-                labels :[
-                    'January',
-                    'February',
-                    'March',
-                    'April',
-                    'May',
-                    'June',
-                ],
+                labels :['January','February','March','April','May','June'],
                 datasets: [{
                 label: 'My First dataset',
                 backgroundColor: 'rgb(255, 99, 132)',
